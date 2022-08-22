@@ -1,9 +1,0 @@
-env_code        = "dev"
-project_code    = "entechlog"
-project_name    = "entechlog-demo"
-
-aiven_api_token = ""
-
-mongodbdb_uri      = ""
-mongodb_username   = ""
-mongodbdb_password = ""

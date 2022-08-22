@@ -1,4 +1,0 @@
-Faker
-confluent-kafka
-json2xml
-boto3

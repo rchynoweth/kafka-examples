@@ -1,9 +1,0 @@
-# ignore all python files (.py) beside all README*.md other than README-secret.md
-*.py
-!app.py
-
-# ignore the password file used for manual build
-my_password.txt
-
-# Ignore the .dockerignore file
-.dockerignore

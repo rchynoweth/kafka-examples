@@ -1,3 +1,0 @@
-#apache-airflow[postgres,crypto]==1.10.14
-#psycopg2-binary
-docker
