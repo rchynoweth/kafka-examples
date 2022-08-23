@@ -4,12 +4,6 @@
 # MAGIC <img src="https://i.pinimg.com/originals/e1/3f/67/e13f6703e4a52f2421ce4d5473604e40.png" width="400">
 # MAGIC 
 # MAGIC 
-# MAGIC Databricks Internal Notes:
-# MAGIC - Must attach the appropriate IAM Role to the cluster  
-# MAGIC - Create a topic with your own name (auto-topic-creation setting is turned on)  
-# MAGIC - Set `kafka.security.protocol` to `SSL` in the streaming configuration option.
-# MAGIC - For TLS, use port `9094` (default), for plaintext use port `9092`.
-# MAGIC 
 # MAGIC Note: We are using AWS MSK as a managed Kafka service.
 # MAGIC 
 # MAGIC Docs: https://docs.databricks.com/spark/latest/structured-streaming/kafka.html#apache-kafka
@@ -20,8 +14,7 @@
 # You can connect to Kafka over either SSL/TLS encrypted connection, or with an unencrypted plaintext connection.
 # Just choose the set of corresponding endpoints to use.
 # If you chose the tls servers, you must enable SSL in the Kafka connection, see later for an example.
-kafka_bootstrap_servers_tls       = dbutils.secrets.get("oetrta", "kafka-bootstrap-servers-tls"      )
-kafka_bootstrap_servers_plaintext = dbutils.secrets.get("oetrta", "kafka-bootstrap-servers-plaintext")
+kafka_bootstrap_servers_plaintext = ""
 
 # COMMAND ----------
 
