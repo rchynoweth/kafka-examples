@@ -36,7 +36,7 @@ while True:
     data = {"eventId": str(uuid.uuid1()), "action": action, "time": current_time}
     print("==> {}".format(data))
     
-    producer.produce(topic, key="event_message", value=json.dumps().encode('utf-8'))
+    producer.produce(topic, key="event_message", value=json.dumps(data).encode('utf-8'))
     producer.flush()
     time.sleep(5)
     

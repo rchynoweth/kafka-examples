@@ -17,3 +17,6 @@ curl -i -X PUT -H  "Content-Type:application/json" \
         "value.converter.schemas.enable": "false",
         "value.converter":"org.apache.kafka.connect.json.JsonConverter"
     }'
+
+
+sleep infinity
