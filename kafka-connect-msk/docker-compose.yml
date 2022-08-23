@@ -42,7 +42,7 @@ services:
       - bash 
       - -c 
       - |
-      cd / .
+        cd / .
         echo "===> Installing connector plugins"
         confluent-hub install --no-prompt snowflakeinc/snowflake-kafka-connector:${KAFKA_SNOWFLAKE_CONNECT_VERSION}
 
