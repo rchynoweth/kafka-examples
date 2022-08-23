@@ -2,6 +2,7 @@
 *.pub
 *.p8
 *connect-secrets.properties
+*.DS_Store
 *my_password.txt
 logs
 __pycache__
