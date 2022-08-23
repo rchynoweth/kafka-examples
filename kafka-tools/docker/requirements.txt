@@ -1,4 +1,0 @@
-asciinema
-awscli
-aws-sam-cli
-docker

@@ -1,5 +1,6 @@
 *.pem
 *.pub
+*.p8
 *connect-secrets.properties
 *my_password.txt
 logs
