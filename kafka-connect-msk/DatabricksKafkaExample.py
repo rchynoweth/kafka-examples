@@ -10,16 +10,16 @@
 
 # COMMAND ----------
 
-# DBTITLE 1,Get Secret Credentials
+# DBTITLE 1,Set Secret Credentials
 # You can connect to Kafka over either SSL/TLS encrypted connection, or with an unencrypted plaintext connection.
-# Just choose the set of corresponding endpoints to use.
-# If you chose the tls servers, you must enable SSL in the Kafka connection, see later for an example.
+# In this case we will just do plain text. 
+# You can use secrets to set this value if you would like. 
 kafka_bootstrap_servers_plaintext = ""
 
 # COMMAND ----------
 
 # DBTITLE 1,Create your a Kafka topic unique to your name
-# Full username, e.g. "aaron.binns@databricks.com"
+# Full username, e.g. "ryan.chynoweth@databricks.com"
 username = dbutils.notebook.entry_point.getDbutils().notebook().getContext().tags().apply('user')
 
 # Short form of username, suitable for use as part of a topic name.
@@ -30,7 +30,7 @@ project_dir = f"/Users/{username}/kafka/streaming_json_demo"
 
 checkpoint_location = f"{project_dir}/kafka_checkpoint"
 
-topic = f"{user}_kafka_test"
+topic = f"{user}_kafka_test" # ryan_chynoweth_kafka_test
 
 # COMMAND ----------
 
@@ -70,7 +70,6 @@ input_stream = (spark
   .withColumn("processingTime", lit(datetime.now().timestamp()).cast("timestamp"))
   .withColumn("eventId", uuidUdf()))
 
-# display(input_stream)
 
 # COMMAND ----------
 
@@ -78,8 +77,7 @@ input_stream = (spark
 # Clear checkpoint location
 dbutils.fs.rm(checkpoint_location, True)
 
-# For the sake of an example, we will write to the Kafka servers using SSL/TLS encryption
-# Hence, we have to set the kafka.security.protocol property to "SSL"
+
 (input_stream
    .select(col("eventId").alias("key"), to_json(struct(col('action'), col('time'), col('processingTime'))).alias("value"))
    .writeStream
@@ -97,8 +95,7 @@ dbutils.fs.rm(checkpoint_location, True)
 # DBTITLE 1,ReadStream to Kafka
 startingOffsets = "earliest"
 
-# In contrast to the Kafka write in the previous cell, when we read from Kafka we use the unencrypted endpoints.
-# Thus, we omit the kafka.security.protocol property
+
 kafka = (spark.readStream
   .format("kafka")
   .option("maxBytesPerTrigger", 200000)
